@@ -25,3 +25,7 @@ const name = prompt("Please, enter your name");
 const surname = prompt("Please, enter your surname");
 const city = prompt("Please, enter your city");
 console.log(`Hello ${name} ${surname} from ${city}, we are glad to see you.`);
+
+//HW 3.3
+const num = "10369".split("");
+console.log(num);
