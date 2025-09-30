@@ -19,3 +19,9 @@ console.log(typeof value6);
 
 const value7 = BigInt(1234567890123456789012345678901234567890n);
 console.log(typeof value7);
+
+//HW 3.2
+const name = prompt("Please, enter your name");
+const surname = prompt("Please, enter your surname");
+const city = prompt("Please, enter your city");
+console.log(`Hello ${name} ${surname} from ${city}, we are glad to see you.`);
