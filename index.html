@@ -5,11 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <p id="timer"></p>
-    <script src="hw18.js"></script>
+    <div class="conntainer">
+        <form>
+            <input type="text" id="city-name" placeholder="Enter city name" class="bordered-block">
+            <button id="get-weather-btn" class="bordered-block">Get weather</button>
+            <button id="weather-reload" class="bordered-block">Reload</button>
+        </form>
+        <div class="weather-wrapper">
+            <p id="weather-description" class="weather-data"></p>
+            <img src="" alt="" id="weather-icon">
+        </div>
+        <p id="temperature" class="weather-data"></p>
+        <p id="wind-speed" class="weather-data"></p>
+    </div>
+    <script src="hw19.js"></script>
 </body>
 
 </html>
