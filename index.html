@@ -7,17 +7,20 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./main.css">
     <title>Document</title>
+    <script defer src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script defer src="hw20.js"></script>
 </head>
 
 <body>
 
     <div class="container">
         <h1>ToDoList</h1>
-        <form class="form js--form">
+        <form id="form" class="form js--form">
             <input type="text" name="value" required class="form__input js--form__input" id="user__input">
             <button class="form__btn">Додати</button>
         </form>
-        <ul class="js--todos-wrapper">
+        <ul id="todo-list" class="js--todos-wrapper">
 
         </ul>
     </div>
@@ -38,9 +41,6 @@
         </div>
     </div>
 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="hw20.js"></script>
 </body>
 
 </html>

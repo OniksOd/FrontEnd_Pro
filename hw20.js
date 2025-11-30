@@ -1,12 +1,11 @@
-window.addEventListener("load", () => {
-  const form = document.querySelector("form");
-  const todoList = document.querySelector(".js--todos-wrapper");
-  const input = document.getElementById("user__input");
+$(window).on("load", () => {
+  const form = $("#form");
+  const todoList = $("#todo-list");
+  const input = $("#user__input");
   const modalBody = $(".modal-body");
   const exampleModal = $("#exampleModal");
 
   exampleModal.on("show.bs.modal", (event) => {
-    // Button that triggered the modal
     const listItem = event.relatedTarget;
     const id = listItem.dataset.id;
     const task = todoTasks.find((_task) => _task.id === id);
@@ -17,16 +16,18 @@ window.addEventListener("load", () => {
   let todoTasks = JSON.parse(localStorage.getItem("todoTasks") ?? "[]");
   const inputList = [];
   const buttonList = [];
-  form.addEventListener("submit", (event) => {
+  const todoListItems = [];
+
+  form.on("submit", (event) => {
     event.preventDefault();
 
     const uuid = crypto.randomUUID();
 
-    const task = { id: uuid, description: input.value, checked: false };
+    const task = { id: uuid, description: input.val(), checked: false };
     todoTasks.push(task);
     saveToLocalStorage(todoTasks);
     renderList(todoTasks);
-    input.value = "";
+    input.val("");
   });
 
   const saveToLocalStorage = (taskList) => {
@@ -57,50 +58,50 @@ window.addEventListener("load", () => {
   };
   const removeListeners = (list, eventName, callback) => {
     list.forEach((element) => {
-      element.removeEventListener(eventName, callback);
+      element.off(eventName, callback);
     });
   };
   const renderList = (taskList) => {
-    todoList.innerHTML = "";
-    const fragment = document.createDocumentFragment();
+    todoList.html("");
     removeListeners(inputList, "change", onChange);
     removeListeners(buttonList, "click", onDeleteTask);
 
     inputList.length = 0;
     buttonList.length = 0;
+    todoListItems.length = 0;
     for (const task of taskList) {
-      const li = document.createElement("li");
-      li.classList.add("todo-item");
+      const li = $("<li></li>").addClass("todo-item");
       if (task.checked) {
-        li.classList.add("todo-item--checked");
+        li.addClass("todo-item--checked");
       }
-      const input = document.createElement("input");
-      input.type = "checkbox";
-      input.checked = task.checked;
-      input.dataset.id = task.id;
+      todoListItems.push(li);
 
-      input.addEventListener("change", onChange);
+      const input = $("<input>").attr({
+        type: "checkbox",
+        checked: task.checked,
+        "data-id": task.id,
+      });
+      input.on("change", onChange);
       inputList.push(input);
-      const span = document.createElement("span");
-      span.classList.add("todo-item__description");
-      span.textContent = task.description;
-      span.dataset.id = task.id;
-      span.dataset.bsToggle = "modal";
-      span.dataset.bsTarget = "#exampleModal";
-      const button = document.createElement("button");
-      button.classList.add("todo-item__delete");
-      button.dataset.id = task.id;
-      button.textContent = "Delete";
 
-      button.addEventListener("click", onDeleteTask);
+      const span = $("<span></span>")
+        .attr({
+          "data-id": task.id,
+          "data-bs-toggle": "modal",
+          "data-bs-target": "#exampleModal",
+        })
+        .addClass("todo-item__description")
+        .text(task.description);
+      const button = $("<button></button>")
+        .attr({ type: "button", "data-id": task.id })
+        .addClass("todo-item__delete")
+        .text("Delete");
+
+      button.on("click", onDeleteTask);
       buttonList.push(button);
-      li.appendChild(input);
-      li.appendChild(span);
-      li.appendChild(button);
-
-      fragment.appendChild(li);
+      li.append([input, span, button]);
     }
-    todoList.appendChild(fragment);
+    todoList.append(todoListItems);
   };
 
   renderList(todoTasks);
