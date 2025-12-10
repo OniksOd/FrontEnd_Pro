@@ -1,3 +1,6 @@
+import "../scss/main.scss";
+import $ from "jquery";
+
 $(window).on("load", () => {
   const form = $("#form");
   const todoList = $("#todo-list");
@@ -7,7 +10,7 @@ $(window).on("load", () => {
 
   exampleModal.on("show.bs.modal", (event) => {
     const listItem = event.relatedTarget;
-    const id = listItem.dataset.id;
+    const id = $(listItem).data("id");
     const task = todoTasks.find((_task) => _task.id === id);
     if (task) {
       modalBody.text(task.description);
@@ -36,7 +39,7 @@ $(window).on("load", () => {
   const onDeleteTask = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = e.target.dataset.id;
+    const id = $(e.target).data("id");
     const tasks = todoTasks.filter((_task) => _task.id !== id);
     todoTasks = tasks;
     saveToLocalStorage(tasks);
@@ -45,7 +48,7 @@ $(window).on("load", () => {
   const onChange = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = e.target.dataset.id;
+    const id = $(e.target).data("id");
     const tasks = todoTasks.map((_task) => {
       if (_task.id === id) {
         return { ..._task, checked: e.target.checked };
