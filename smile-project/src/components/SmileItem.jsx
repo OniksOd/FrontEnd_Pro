@@ -1,18 +1,13 @@
-import { PureComponent } from "react";
-
-export class SmileItem extends PureComponent {
-  handleClick = () => {
-    this.props.onClick(this.props.id);
+export const SmileItem = ({ id, emoji, count, onClick }) => {
+  const handleClick = () => {
+    onClick(id);
   };
-  render() {
-    const { emoji, count } = this.props;
-    return (
-      <div>
-        <span className="smiles" onClick={this.handleClick}>
-          {emoji}
-        </span>
-        <span className="count">{count}</span>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <span className="smiles" onClick={handleClick}>
+        {emoji}
+      </span>
+      <span className="count">{count}</span>
+    </div>
+  );
+};
