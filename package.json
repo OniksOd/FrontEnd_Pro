@@ -10,9 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.6",
     "@reduxjs/toolkit": "^2.11.2",
+    "final-form": "^5.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-final-form": "^7.0.0",
+    "react-hook-form": "^7.70.0",
     "react-redux": "^9.2.0",
     "redux": "^5.0.1"
   },

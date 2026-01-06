@@ -1,13 +1,14 @@
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import { Count } from "../components/Count";
-import { ButtonIncrement } from "../components/ButtonIncrement";
-import { ButtonDecrement } from "../components/ButtonDecrement";
+import { ItemsList } from "../components/ItemsList";
+import { TodoForm } from "../components/TodoForm";
+import { Footer } from "../components/Footer";
 
 export const App = () => (
   <Provider store={store}>
-    <Count />
-    <ButtonIncrement />
-    <ButtonDecrement />
+    <h1>To Do</h1>
+    <TodoForm />
+    <ItemsList />
+    <Footer />
   </Provider>
 );
