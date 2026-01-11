@@ -1,44 +1,68 @@
 import { useState, useEffect } from "react";
 import { Form } from "./Form";
 import { TodoList } from "./TodoList";
+import { EditDialog } from "./EditDialog";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  fetchTodoList,
+  addTodoItem,
+  todoDelete,
+  todoChecked,
+  todoEdited,
+} from "./slices/todosSlice";
 
 export const Main = () => {
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("list") || "[]")
-  );
+  const [editItem, setEdit] = useState(null);
+  const { todoList } = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
+  const getTodoList = () => {
+    dispatch(fetchTodoList());
+  };
+  const addNewTodo = (item) => {
+    dispatch(addTodoItem(item));
+  };
+  const onDeleteItem = (id) => {
+    dispatch(todoDelete(id));
+  };
   useEffect(() => {
-    localStorage.setItem("list", JSON.stringify(items));
-  }, [items]);
+    getTodoList();
+  }, []);
   const onSuccess = (item) => {
     const newItem = {
       ...item,
-      id: window.crypto.randomUUID(),
+      //   id: window.crypto.randomUUID(),
       checked: false,
     };
-    setItems((prevState) => [...prevState, newItem]);
+    addNewTodo(newItem);
   };
-  const onDeleteItem = (id) => {
-    setItems((prevState) =>
-      prevState.filter((item) => {
-        return item.id !== id;
-      })
-    );
+  const onEditConfirm = (item) => {
+    dispatch(todoEdited(item));
+  };
+  const onEdit = (item) => {
+    setEdit(item);
+  };
+  const onHandleCloseDialog = () => {
+    setEdit(null);
   };
   const onMarkChecked = (id, checked) => {
-    setItems((prevState) =>
-      prevState.map((item) => {
-        if (item.id === id) return { ...item, checked };
-        return item;
-      })
-    );
+    dispatch(todoChecked({ id, checked }));
   };
+
   return (
     <>
       <Form onSuccess={onSuccess} />
       <TodoList
-        items={items}
+        items={todoList}
         onDeleteItem={onDeleteItem}
         onMarkChecked={onMarkChecked}
+        onEdit={onEdit}
+      />
+      <EditDialog
+        item={editItem}
+        onSuccess={onEditConfirm}
+        onClose={onHandleCloseDialog}
       />
     </>
   );

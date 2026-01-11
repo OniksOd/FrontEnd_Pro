@@ -1,4 +1,5 @@
 import { FormContainer, TextFieldElement } from "react-hook-form-mui";
+import { use, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Stack } from "@mui/material";
@@ -10,7 +11,7 @@ const schema = z.object({
     .min(5, "Description must be at least 5 characters long"),
 });
 
-export const Form = ({ onSuccess }) => {
+export const Form = ({ item, containerProps, onSuccess }) => {
   const formContext = useForm({
     defaultValues: { description: "" },
     mode: "onSubmit",
@@ -23,12 +24,21 @@ export const Form = ({ onSuccess }) => {
     formContext.reset();
   };
 
+  useEffect(() => {
+    if (item) {
+      formContext.reset(item);
+      return;
+    }
+    formContext.reset();
+  }, [item]);
+
   return (
     <FormContainer formContext={formContext} onSuccess={handleSuccess}>
       <Stack
         sx={{
           width: "30%",
         }}
+        {...containerProps}
       >
         <TextFieldElement name="description" label="Name" required />
         <Button type="submit" variant="contained" sx={{ mt: 2 }}>

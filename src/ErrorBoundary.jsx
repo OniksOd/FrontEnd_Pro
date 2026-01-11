@@ -1,7 +1,6 @@
 import { isRouteErrorResponse } from "react-router";
 
 export const ErrorBoundary = ({ children, error, ...rest }) => {
-  console.log(error);
   if (isRouteErrorResponse(error)) {
     return (
       <>

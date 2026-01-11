@@ -1,12 +1,21 @@
-import { Checkbox, Button, FormControlLabel, Stack } from "@mui/material";
+import {
+  Checkbox,
+  Button,
+  FormControlLabel,
+  Stack,
+  IconButton,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 
-export const TodoListItem = ({ item, onDeleteItem, onMarkChecked }) => {
+export const TodoListItem = ({ item, onDeleteItem, onMarkChecked, onEdit }) => {
   const { description, id, checked } = item;
   const onDelete = () => {
     onDeleteItem(id);
   };
+  const onEditItem = () => {
+    onEdit(item);
+  };
   const handleChecked = (event) => {
-    console.log(event.target.checked);
     onMarkChecked(id, event.target.checked);
   };
   return (
@@ -16,6 +25,9 @@ export const TodoListItem = ({ item, onDeleteItem, onMarkChecked }) => {
         label={description}
       />
       <Button onClick={onDelete}>Delete</Button>
+      <IconButton onClick={onEditItem}>
+        <EditIcon />
+      </IconButton>
     </Stack>
   );
 };
