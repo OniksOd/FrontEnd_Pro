@@ -6,7 +6,7 @@ export const fetchSwapi = createAsyncThunk(
   "swapi/fetchSwapi",
   async (query, thunkAPI) => {
     try {
-      const response = await fetch(BASE_URL + query);
+      const response = await fetch(`${BASE_URL}${query}`);
       if (!response.ok) throw new Error("Bad request");
       const data = await response.json();
       return data;
