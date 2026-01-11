@@ -32,7 +32,7 @@ export const Main = () => {
   const onSuccess = (item) => {
     const newItem = {
       ...item,
-      //   id: window.crypto.randomUUID(),
+      id: window.crypto.randomUUID(),
       checked: false,
     };
     addNewTodo(newItem);

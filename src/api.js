@@ -1,35 +1,32 @@
-const BaseURL = "https://6963fef62d146d9f58d4e594.mockapi.io/";
+import axios from "axios";
+
+const BaseURL = "http://localhost:3000";
 
 class APIRequester {
-  fetchTodos() {
-    return fetch(`${BaseURL}/todo`).then((response) => response.json());
+  constructor() {
+    this.client = axios.create({
+      baseURL: BaseURL,
+    });
   }
-  addTodo(payload) {
-    console.log("API payload:", payload);
-    return fetch(`${BaseURL}/todo`, {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }).then((response) => response.json());
-  }
-  deleteTodo(id) {
-    return fetch(`${BaseURL}/todo/${id}`, {
-      method: "DELETE",
-    }).then((response) => response.json());
-  }
-  toggleTodo(payload) {
-    return fetch(`${BaseURL}/todo/${payload.id}`, {
-      method: "PUT",
-      body: JSON.stringify({
-        checked: payload.checked,
-      }),
-    }).then((response) => response.json());
-  }
-  editTodo(payload) {
-    return fetch(`${BaseURL}/todo/${payload.id}`, {
-      method: "PUT",
-      body: JSON.stringify(payload),
-    }).then((response) => response.json());
-  }
+  fetchTodos = () => {
+    return this.client.get("/todo").then(({ data }) => data);
+  };
+  addTodo = (payload) => {
+    return this.client.post("/todo", { ...payload }).then(({ data }) => data);
+  };
+  deleteTodo = (id) => {
+    return this.client.delete(`/todo/${id}`).then(({ data }) => data);
+  };
+  toggleTodo = (payload) => {
+    return this.client
+      .patch(`/todo/${payload.id}`, { ...payload })
+      .then(({ data }) => data);
+  };
+  editTodo = (payload) => {
+    return this.client
+      .patch(`/todo/${payload.id}`, { ...payload })
+      .then(({ data }) => data);
+  };
 }
 
 export const apiRequester = new APIRequester();

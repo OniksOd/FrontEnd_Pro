@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import logger from "redux-logger";
 
 import { todoReducer } from "../slices";
 import { rootSaga } from "../sagas/saga";

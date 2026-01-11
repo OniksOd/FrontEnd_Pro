@@ -19,6 +19,7 @@ function* loadTodoList() {
     const todoList = yield call(apiRequester.fetchTodos);
     yield put({ type: fetchTodoListSuccess.type, todoList });
   } catch (e) {
+    console.error("Failed to fetch todo list:", e);
     yield put({ type: fetchTodoListSuccess.type, todoList: [] });
   }
 }
