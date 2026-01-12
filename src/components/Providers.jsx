@@ -1,10 +1,10 @@
 import { ThemeProvider } from "@mui/material";
 import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import { theme } from "./theme";
-import { router } from "./routes";
+import { theme } from "../theme/theme.js";
+import { router } from "../routes/routes";
 import { ErrorBoundary } from "./ErrorBoundary";
-import { store } from "./store/store.js";
+import { store } from "../redux/store.js";
 
 export const Providers = () => {
   return (

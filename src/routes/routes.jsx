@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import { App } from "./App";
-import { Main } from "./Main";
-import { NotFound } from "./NotFound";
-import { ErrorBoundary } from "./ErrorBoundary";
-import { Contacts } from "./components/Contacts";
-import { AboutMe } from "./components/AboutMe";
+import { App } from "../App";
+import { Main } from "../Main";
+import { NotFound } from "../components/NotFound";
+import { ErrorBoundary } from "../components/ErrorBoundary";
+import { Contacts } from "../components/Contacts";
+import { AboutMe } from "../components/AboutMe";
 
 export const router = createBrowserRouter([
   {

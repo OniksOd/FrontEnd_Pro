@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Form } from "./Form";
-import { TodoList } from "./TodoList";
-import { EditDialog } from "./EditDialog";
+import { Form } from "../src/components/Form";
+import { TodoList } from "./components/TodoList";
+import { EditDialog } from "./components/EditDialog";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -10,7 +10,7 @@ import {
   todoDelete,
   todoChecked,
   todoEdited,
-} from "./slices/todosSlice";
+} from "./redux/todosSlice";
 
 export const Main = () => {
   const [editItem, setEdit] = useState(null);

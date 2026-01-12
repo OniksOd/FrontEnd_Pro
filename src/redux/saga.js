@@ -10,9 +10,9 @@ import {
   todoCheckedSuccess,
   todoEdited,
   todoEditedSuccess,
-} from "../slices/todosSlice.js";
+} from "./todosSlice.js";
 
-import { apiRequester } from "../api.js";
+import { apiRequester } from "../helpers/api.js";
 
 function* loadTodoList() {
   try {
@@ -58,10 +58,10 @@ function* editTodoSaga(action) {
   }
 }
 function* todoSaga() {
-  yield takeLatest(fetchTodoList.type, loadTodoList);
+  yield takeEvery(fetchTodoList.type, loadTodoList);
 }
 function* addTodoSaga() {
-  yield takeLatest(addTodoItem.type, addTodoItemSaga);
+  yield takeEvery(addTodoItem.type, addTodoItemSaga);
 }
 function* deleteTodoSaga(action) {
   yield takeEvery(todoDelete.type, deleteTodoItemSaga);
@@ -70,7 +70,7 @@ function* checkTodoSag() {
   yield takeEvery(todoChecked.type, checkTodoSaga);
 }
 function* editTodoSag() {
-  yield takeLatest(todoEdited.type, editTodoSaga);
+  yield takeEvery(todoEdited.type, editTodoSaga);
 }
 function* rootSaga() {
   yield all([
