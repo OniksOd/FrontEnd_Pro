@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import { App } from "../App";
-import { Main } from "../Main";
+import { Main } from "../main";
 import { NotFound } from "../components/NotFound";
 import { ErrorBoundary } from "../components/ErrorBoundary";
-import { Contacts } from "../components/Contacts";
+import { Swapi } from "../components/Swapi";
 import { AboutMe } from "../components/AboutMe";
 
 export const router = createBrowserRouter([
@@ -17,8 +17,8 @@ export const router = createBrowserRouter([
         Component: Main,
       },
       {
-        path: "contacts",
-        Component: Contacts,
+        path: "swapi",
+        Component: Swapi,
       },
       {
         path: "about-me",

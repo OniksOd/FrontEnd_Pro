@@ -17,12 +17,12 @@ export const Header = () => {
       >
         <ListItem sx={{ width: "auto" }}>
           <Link component={RouterLink} to="/main">
-            Main
+            ToDo
           </Link>
         </ListItem>
         <ListItem sx={{ width: "auto" }}>
-          <Link component={RouterLink} to="/contacts">
-            Contacts
+          <Link component={RouterLink} to="/swapi">
+            Swapi
           </Link>
         </ListItem>
         <ListItem sx={{ width: "auto" }}>
