@@ -40,8 +40,25 @@ export const Form = ({ item, containerProps, onSuccess }) => {
         }}
         {...containerProps}
       >
-        <TextFieldElement name="description" label="Name" required />
-        <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+        <TextFieldElement
+          name="description"
+          label="Name"
+          required
+          slotProps={{
+            htmlInput: {
+              "data-testid": "name-input",
+            },
+            formHelperText: {
+              "data-testid": "name-error-text",
+            },
+          }}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{ mt: 2 }}
+          data-testid="submit-btn"
+        >
           Submit
         </Button>
       </Stack>

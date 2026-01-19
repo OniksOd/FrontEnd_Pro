@@ -10,9 +10,9 @@ import {
   todoCheckedSuccess,
   todoEdited,
   todoEditedSuccess,
-} from "./todosSlice.js";
+} from "./todosSlice";
 
-import { apiRequester } from "../helpers/api.js";
+import { apiRequester } from "../helpers/api";
 
 function* loadTodoList() {
   try {

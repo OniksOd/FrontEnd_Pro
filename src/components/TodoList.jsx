@@ -3,7 +3,7 @@ import { TodoListItem } from "./TodoListItem";
 
 export const TodoList = ({ items, onDeleteItem, onMarkChecked, onEdit }) => {
   return (
-    <Stack>
+    <Stack data-testid="todo-list">
       {items.map((item) => (
         <TodoListItem
           key={item.id}

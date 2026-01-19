@@ -13,6 +13,10 @@ export const router = createBrowserRouter([
     errorElement: <ErrorBoundary />,
     children: [
       {
+        index: true,
+        Component: Main,
+      },
+      {
         path: "main",
         Component: Main,
       },

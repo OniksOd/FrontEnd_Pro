@@ -19,7 +19,7 @@ export const TodoListItem = ({ item, onDeleteItem, onMarkChecked, onEdit }) => {
     onMarkChecked(id, event.target.checked);
   };
   return (
-    <Stack direction="row">
+    <Stack direction="row" data-testid={`todo-item-${id}`}>
       <FormControlLabel
         control={<Checkbox checked={checked} onChange={handleChecked} />}
         label={description}
